@@ -24,16 +24,17 @@ pipeline {
                 echo 'Building..'
                 echo 'One more Building..'
                 sh 'ls -lah'
+                sh 'env'
                 //sh 'cat 1.txt'
                 //input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
-        // stage('PR Lint') {
-        //     when { changeRequest() }
-        //     steps {
-        //         echo "This runs only on PRs"
-        //     }
-        // }
+        stage('PR Lint') {
+            when { changeRequest() }
+            steps {
+                echo "This runs only on PRs"
+            }
+        }
         stage('Test') {
             when {
                 branch 'add_play_pipeline'
