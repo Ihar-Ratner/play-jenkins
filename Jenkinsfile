@@ -17,7 +17,7 @@ pipeline {
         stage('PR Lint') {
             when { changeRequest() }
             steps {
-                echo "This runs only on PRs"
+                echo "This runs only on PRs1"
             }
         }
         stage('Test') {
