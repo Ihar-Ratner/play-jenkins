@@ -8,6 +8,9 @@ pipeline {
 
 
     stages {
+        stage('Checkout') {
+            checkout scm
+        }
         stage('Build') {
             when {
                 branch 'add_play_pipeline'
