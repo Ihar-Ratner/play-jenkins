@@ -17,12 +17,6 @@ pipeline {
                 sh 'ls -lah'
             }
         }
-        stage('PR Lint') {
-            when { changeRequest() }
-            steps {
-                echo "This runs only on PRs1"
-            }
-        }
         stage('Test') {
             steps {
                 echo 'Testing..'
