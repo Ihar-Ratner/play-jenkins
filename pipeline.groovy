@@ -10,7 +10,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '**']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ihar-Ratner/play-jenkins']])
+                checkout scmGit(
+                    branches: [[name: '**']],
+                    extensions: [[$class: 'CloneOption', noTags: false, shallow: false]],
+                    userRemoteConfigs: [[url: 'https://github.com/Ihar-Ratner/play-jenkins']])
             }
         }
         stage('Build') {
