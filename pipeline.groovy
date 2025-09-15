@@ -25,7 +25,6 @@ pipeline {
                 echo 'One more Building..'
                 sh 'ls -lah'
                 //sh 'cat 1.txt'
-                sh 'env'
                 //input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
