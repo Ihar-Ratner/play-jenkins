@@ -15,9 +15,16 @@ pipeline {
             steps {
                 echo 'Building..'
                 echo 'One more Building..'
-                sh 'cat 1.txt'
+                sh 'ls -lah'
+                //sh 'cat 1.txt'
                 sh 'env'
                 //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+            }
+        }
+        stage('PR Lint') {
+            when { changeRequest() }
+            steps {
+                echo "This runs only on PRs"
             }
         }
         stage('Test') {
