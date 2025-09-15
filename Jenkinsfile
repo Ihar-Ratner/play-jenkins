@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,13 +15,12 @@ pipeline {
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
                 sh 'ls -lah'
-                sh 'env'
             }
         }
         stage('PR Lint') {
             when { changeRequest() }
             steps {
-                echo "This runs only on PRs"
+                echo "This runs only on PRs1"
             }
         }
         stage('Test') {
