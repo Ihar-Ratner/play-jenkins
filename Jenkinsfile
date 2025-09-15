@@ -14,7 +14,6 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
-                sh 'ls -lah'
                 sh 'pwd'
             }
         }
