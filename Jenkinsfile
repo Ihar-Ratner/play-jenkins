@@ -1,32 +1,17 @@
 pipeline {
     agent any
 
-    triggers {
-        // Requires GitHub plugin
-        githubPush()
-    }
-
-
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(
-                    branches: [[name: '**']],
-                    extensions: [[$class: 'CloneOption', noTags: false, shallow: false]],
-                    userRemoteConfigs: [[url: 'https://github.com/Ihar-Ratner/play-jenkins']])
+                checkout scm
             }
         }
         stage('Build') {
-            when {
-                branch 'add_play_pipeline'
-            }
             steps {
-                echo 'Building..'
-                echo 'One more Building..'
+                echo "Building branch: ${env.BRANCH_NAME}"
                 sh 'ls -lah'
                 sh 'env'
-                //sh 'cat 1.txt'
-                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
             }
         }
         stage('PR Lint') {
@@ -36,9 +21,6 @@ pipeline {
             }
         }
         stage('Test') {
-            when {
-                branch 'add_play_pipeline'
-            }
             steps {
                 echo 'Testing..'
                 withCredentials([string(credentialsId: 'secret', variable: 'secret')]) {
