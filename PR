@@ -16,6 +16,7 @@ pipeline {
                 echo "Building branch: ${env.BRANCH_NAME}"
                 sh 'ls -lah'
             }
+        }
     }
     post {
         always {
