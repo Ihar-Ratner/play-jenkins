@@ -15,7 +15,6 @@ pipeline {
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
                 sh 'ls -lah'
-                sh 'env'
             }
         }
         stage('PR Lint') {
