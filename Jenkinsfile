@@ -12,6 +12,7 @@ pipeline {
             }
         }
 
+
         stage('PR') {
             steps {
                 sh 'env'
@@ -30,6 +31,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'jenkins_admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh 'curl --user $USERNAME:$PASSWORD -X POST -F "jenkinsfile=<Jenkinsfile" http://193.168.35.100:8080/pipeline-model-converter/validate'
                 }
+
             }
         }
 
