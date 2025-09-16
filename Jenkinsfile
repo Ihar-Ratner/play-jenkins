@@ -14,6 +14,7 @@ pipeline {
 
         stage('PR') {
             steps {
+                echo "CHECK BRANCH NAME: ${env.BRANCH_NAME}"
                 sh 'env'
             }
         }
