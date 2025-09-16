@@ -11,12 +11,28 @@ pipeline {
                 checkout scm
             }
         }
+
+        stage('Linter') {
+            when {
+                branch pattern: "feature/.*", comparator: "REGEXP"
+            }
+            steps {
+                echo "Building branch: ${env.BRANCH_NAME}"
+                sh 'pwd'
+                sh 'env'
+            }
+        }
+
         stage('Build') {
+            when {
+                branch 'development'
+            }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
                 sh 'pwd'
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
@@ -27,15 +43,17 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy') {
             when {
-                branch 'main'
+                branch 'production'
             }
             steps {
                 echo 'Deploying....'
             }
         }
     }
+
     post {
         always {
             echo 'Clean Workspace after build'
