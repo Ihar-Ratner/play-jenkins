@@ -18,8 +18,9 @@ pipeline {
             }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
-                sh 'pwd'
-                sh 'env'
+                withCredentials([usernamePassword(credentialsId: 'jenkins_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'curl --user $USERNAME:$PASSWORD -X POST -F "jenkinsfile=<Jenkinsfile" http://193.168.35.100/:8080/pipeline-model-converter/validate'
+                }
             }
         }
 
