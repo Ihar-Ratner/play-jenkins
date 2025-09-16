@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     triggers {
-        githubPush()
-        githubPullRequests events: [Open(), commitChanged()], spec: '', triggerMode: 'HEAVY_HOOKS'
+        pullRequest()
     }
 
     stages {
@@ -16,6 +15,7 @@ pipeline {
         stage('Linter') {
             when {
                 branch pattern: "feature/.*", comparator: "REGEXP"
+                changeRequest()
             }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
