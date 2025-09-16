@@ -16,6 +16,7 @@ pipeline {
             steps {
                 echo "CHECK BRANCH NAME: ${env.BRANCH_NAME}"
                 sh 'env'
+                echo 'Hello There'
             }
         }
 
