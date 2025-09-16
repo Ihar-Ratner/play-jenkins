@@ -14,7 +14,7 @@ pipeline {
 
         stage('PR') {
             when {
-                expression { env.GITHUB_PR_STATE != null }
+                changeRequest()
             }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
