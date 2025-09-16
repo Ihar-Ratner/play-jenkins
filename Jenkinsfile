@@ -19,6 +19,7 @@ pipeline {
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
                 sh 'pwd'
+                sh 'env'
             }
         }
 
@@ -52,7 +53,7 @@ pipeline {
             }
         }
     }
-    
+
     post {
         always {
             echo 'Clean Workspace after build'
