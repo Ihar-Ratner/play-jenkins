@@ -12,6 +12,17 @@ pipeline {
             }
         }
 
+        stage('PR') {
+            when {
+                branch pattern: "feature\/.*", comparator: "REGEXP"
+            }
+            steps {
+                echo "Building branch: ${env.BRANCH_NAME}"
+                sh 'pwd'
+                sh 'env'
+            }
+        }
+
         stage('Linter') {
             when {
                 branch pattern: "feature/.*", comparator: "REGEXP"
