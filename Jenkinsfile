@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    triggers {
-        githubPush()
-    }
+    // triggers {
+    //     githubPush()
+    // }
 
     stages {
         stage('Checkout') {
@@ -18,8 +18,11 @@ pipeline {
             }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
-                sh 'pwd'
+                echo "GET ENV"
                 sh 'env'
+                withCredentials([usernamePassword(credentialsId: 'jenkins_admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh 'curl --user $USERNAME:$PASSWORD -X POST -F "jenkinsfile=<Jenkinsfile" http://193.168.35.100:8080/pipeline-model-converter/validate'
+                }
             }
         }
 
