@@ -13,12 +13,7 @@ pipeline {
         }
 
         stage('PR') {
-            when {
-                changeRequest()
-            }
             steps {
-                echo "Building branch: ${env.BRANCH_NAME}"
-                sh 'pwd'
                 sh 'env'
             }
         }

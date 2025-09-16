@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-   triggers {
-        githubPullRequests()
-    }
+    // triggers {
+    //     githubPush()
+    // }
 
     stages {
         stage('Checkout') {
@@ -11,13 +11,15 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+
+        stage('PR') {
             steps {
-                echo "Building branch: ${env.BRANCH_NAME}"
-                sh 'ls -lah'
+                sh 'env'
             }
         }
+
     }
+
     post {
         always {
             echo 'Clean Workspace after build'
