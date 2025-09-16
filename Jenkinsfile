@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    triggers {
-        pullRequest()
-    }
+    // triggers {
+    //     githubPush()
+    // }
 
     stages {
         stage('Checkout') {
@@ -15,7 +15,6 @@ pipeline {
         stage('Linter') {
             when {
                 branch pattern: "feature/.*", comparator: "REGEXP"
-                changeRequest()
             }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
