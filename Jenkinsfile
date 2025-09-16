@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('PR') {
+            steps {
+                sh 'env'
+            }
+        }
+
         stage('Linter') {
             when {
                 branch pattern: "feature/.*", comparator: "REGEXP"
@@ -20,6 +26,7 @@ pipeline {
                 echo "Building branch: ${env.BRANCH_NAME}"
                 echo "GET ENV"
                 sh 'env'
+                echo 'Hello there'
                 withCredentials([usernamePassword(credentialsId: 'jenkins_admin', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh 'curl --user $USERNAME:$PASSWORD -X POST -F "jenkinsfile=<Jenkinsfile" http://193.168.35.100:8080/pipeline-model-converter/validate'
                 }
