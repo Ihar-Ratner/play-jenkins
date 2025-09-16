@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    // triggers {
-    //     githubPush()
-    // }
+    triggers {
+        githubPush()
+    }
 
     stages {
         stage('Checkout') {
@@ -11,7 +11,6 @@ pipeline {
                 checkout scm
             }
         }
-
 
         stage('PR') {
             steps {
