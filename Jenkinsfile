@@ -1,9 +1,10 @@
 pipeline {
     agent any
 
-    // triggers {
-    //     githubPush()
-    // }
+    triggers {
+        githubPush()
+        githubPullRequests events: [Open(), commitChanged()], spec: '', triggerMode: 'HEAVY_HOOKS'
+    }
 
     stages {
         stage('Checkout') {
