@@ -14,7 +14,7 @@ pipeline {
 
         stage('PR') {
             when {
-                branch pattern: "feature\/.*", comparator: "REGEXP"
+                expression { env.GITHUB_PR_STATE != null }
             }
             steps {
                 echo "Building branch: ${env.BRANCH_NAME}"
